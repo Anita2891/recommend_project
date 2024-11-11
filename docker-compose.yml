@@ -2,7 +2,7 @@ version: '3'
 
 services:
   web:
-    image: python:3.9-slim
+    image: "45628/recommend-project:latest"
     volumes:
       - "./db_data:/app/db_data"                 # Mount database directory
       - "./media/product_images:/app/mediafiles"  # Mount media files directory

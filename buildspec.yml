@@ -1,0 +1,44 @@
+version: 0.2
+
+env:
+  variables:
+    DOCKER_IMAGE_NAME: "recommend-project"  # Docker image name
+    DOCKER_TAG: "latest"  # Docker image tag (could be set to any version like latest, or a commit hash)
+  parameter-store:
+    DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username  # Docker registry username stored in SSM
+    DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password  # Docker registry password stored in SSM
+    DOCKER_REGISTRY_URL: /myapp/docker-registry/url  # Docker registry URL stored in SSM
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9  # Set the Python version required for the project
+    commands:
+      - echo "Installing dependencies..."
+      - pip install -r requirements.txt  # Install Python dependencies from requirements.txt
+
+  pre_build:
+    commands:
+      - echo "Running tests..."
+      # Optionally, run tests before building. Uncomment below line to run tests.
+      # - pytest tests/
+      - echo "Preparing for Docker image build..."
+
+  build:
+    commands:
+      - echo "Logging in to Docker registry..."
+      - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"  # Login to Docker registry
+      - echo "Building Docker image..."
+      - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/$DOCKER_IMAGE_NAME:$DOCKER_TAG" .  # Build Docker image using the Dockerfile
+      - echo "Pushing Docker image to registry..."
+      - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/$DOCKER_IMAGE_NAME:$DOCKER_TAG"  # Push the image to the Docker registry
+
+  post_build:
+    commands:
+      - echo "Build completed successfully!"  # Post build message, for logging purposes
+
+artifacts:
+  files:
+    - '**/*'  # Include all files in the artifacts
+  base-directory: .  # Set base directory from which to include the files
+
