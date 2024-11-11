@@ -1,0 +1,28 @@
+# Python-related files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pye
+*.pyz
+
+# Environment variables and secrets
+.env
+*.env
+
+# Django-specific files
+**/migrations/  # Exclude all migration files
+*.sqlite3       # SQLite database files
+*.db            # Database files
+
+# Virtual environments (local setup)
+.venv/
+venv/
+coreenv/
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# IDE-specific files
+.vscode/

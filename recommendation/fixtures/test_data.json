@@ -1,0 +1,110 @@
+[
+    {
+        "model": "recommendation.user", 
+        "pk": 1,
+        "fields": {
+            "username": "john_doe",
+            "email": "john.doe@example.com"
+        }
+    },
+    {
+        "model": "recommendation.user", 
+        "pk": 2,
+        "fields": {
+            "username": "jane_doe",
+            "email": "jane.doe@example.com"
+        }
+    },
+    {
+        "model": "recommendation.product",  
+        "pk": 1,
+        "fields": {
+            "item_id": 101,
+            "name": "Product A",
+            "description": "Description for Product A",
+            "item_image": "product_images/product_a.jpg"
+        }
+    },
+    {
+        "model": "recommendation.product", 
+        "pk": 2,
+        "fields": {
+            "item_id": 102,
+            "name": "Product B",
+            "description": "Description for Product B",
+            "item_image": "product_images/product_b.jpg"
+        }
+    },
+    {
+        "model": "recommendation.preference",  
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "category": "electronics",
+            "value": 4.5
+        }
+    },
+    {
+        "model": "recommendation.preference",  
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "category": "clothing",
+            "value": 3.5
+        }
+    },
+    {
+        "model": "recommendation.preference",  
+        "pk": 3,
+        "fields": {
+            "user": 2,
+            "category": "electronics",
+            "value": 5.0
+        }
+    },
+    {
+        "model": "recommendation.preference",  
+        "pk": 4,
+        "fields": {
+            "user": 2,
+            "category": "clothing",
+            "value": 4.0
+        }
+    },
+    {
+        "model": "recommendation.interaction",  
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "item_id": 101,
+            "score": 5.0
+        }
+    },
+    {
+        "model": "recommendation.interaction",  
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "item_id": 102,
+            "score": 3.0
+        }
+    },
+    {
+        "model": "recommendation.interaction",  
+        "pk": 3,
+        "fields": {
+            "user": 2,
+            "item_id": 101,
+            "score": 4.0
+        }
+    },
+    {
+        "model": "recommendation.interaction",  
+        "pk": 4,
+        "fields": {
+            "user": 2,
+            "item_id": 102,
+            "score": 4.5
+        }
+    }
+]
