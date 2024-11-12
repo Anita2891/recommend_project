@@ -4,10 +4,7 @@ env:
   variables:
     DOCKER_IMAGE_NAME: "recommend-project"
     DOCKER_TAG: "latest"
-  parameter-store:
-    DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username
-    DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password
-    DOCKER_REGISTRY_URL: /myapp/docker-registry/url
+
 phases:
   install:
     runtime-versions:
@@ -26,11 +23,11 @@ phases:
   build:
     commands:
       - echo "Logging in to Docker registry..."
-      - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"  # Login to Docker registry
+      - echo Amahesh4775 | docker login -u 45628 --password-stdin docker.io  # Login to Docker registry
       - echo "Building Docker image..."
-      - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/$DOCKER_IMAGE_NAME:$DOCKER_TAG" .  # Build Docker image using the Dockerfile
+      - docker build -t docker.io/45628/recommend-project:latest .  # Build Docker image using the Dockerfile
       - echo "Pushing Docker image to registry..."
-      - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/$DOCKER_IMAGE_NAME:$DOCKER_TAG"  # Push the image to the Docker registry
+      - docker push docker.io/45628/recommend-project:latest  # Push the image to the Docker registry
 
   post_build:
     commands:
@@ -40,4 +37,3 @@ artifacts:
   files:
     - '**/*'  # Include all files in the artifacts
   base-directory: .  # Set base directory from which to include the files
-
