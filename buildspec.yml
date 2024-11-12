@@ -6,7 +6,7 @@ env:
     DOCKER_TAG: "latest"  # Docker image tag (could be set to any version like latest, or a commit hash)
     DOCKER_REGISTRY_USERNAME: "45628"
     DOCKER_REGISTRY_PASSWORD: "Amahesh4775"
-    DOCKER_REGISTRY_URL: "Amahesh4775"
+    DOCKER_REGISTRY_URL: "docker.io"
 
 phases:
   install:
