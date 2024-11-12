@@ -4,9 +4,10 @@ env:
   variables:
     DOCKER_IMAGE_NAME: "recommend-project"  # Docker image name
     DOCKER_TAG: "latest"  # Docker image tag (could be set to any version like latest, or a commit hash)
-    DOCKER_REGISTRY_USERNAME: "45628"
-    DOCKER_REGISTRY_PASSWORD: "Amahesh4775"
-    DOCKER_REGISTRY_URL: "docker.io"
+  parameter-store:
+    DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username  # Docker registry username stored in SSM
+    DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password  # Docker registry password stored in SSM
+    DOCKER_REGISTRY_URL: /myapp/docker-registry/url  # Docker registry URL stored in SSM
 
 phases:
   install:
